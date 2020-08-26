@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Easynvest Test</string>
+    <string name="title_value_application">Quanto você gostaria de aplicar?*</string>
+    <string name="label_value_application">R$</string>
+    <string name="title_date_application">Qual a data de vencimento do investimento?*</string>
+    <string name="label_date_application">dia/mês/ano</string>
+    <string name="title_rate_application">Qual o percentual do CDI do investimento?*</string>
+    <string name="label_rate_application">100%</string>
+    <string name="label_simulate">Simular</string>
+
+    <string name="title_result_simulate">Resultado da simulação</string>
+    <string name="label_total_yield">Rendimento total de</string>
+    <string name="label_initially_applied_value">Valor aplicado inicialmente</string>
+    <string name="label_gross_amount">Valor bruto do investimento</string>
+    <string name="label_yield_value">Valor do rendimento</string>
+    <string name="label_taxes_amount">IR sobre o investimento</string>
+    <string name="label_net_amount">Valor líquido do investimento</string>
+    <string name="label_maturity_date">Data de resgate</string>
+    <string name="label_maturity_total_days">Dias corridos</string>
+    <string name="label_yearly_interest_rate">Rendimento mensal</string>
+    <string name="label_rate_applied_cdi">Percentual do CDI do investimento</string>
+    <string name="label_annual_net_rate_profit">Rentabilidade anual</string>
+    <string name="label_rate_profit">Rentabilidade no período</string>
+
+    <string name="label_simulate_again">Simular novamente</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
