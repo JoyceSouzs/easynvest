@@ -8,6 +8,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.easynvesttest.R
 import com.example.easynvesttest.presentation.features.viewmodel.SimulatorCalculatorViewModel
+import com.example.easynvesttest.util.DateTimeFormat
+import com.example.easynvesttest.util.Format
 import kotlinx.android.synthetic.main.fragment_result.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -38,26 +40,45 @@ class ResultFragment : Fragment() {
             progress.isVisible = it
         }
 
-
         viewModel.facilitatorInvestment().observe(viewLifecycleOwner) {
-            text_result_simulate.text = it.grossAmount.toString()
-            text_total_yield.text = it.grossAmountProfit.toString()
-            text_total_applied_value.text = it.grossAmount.toString()
-            text_yield_value.text = it.grossAmountProfit.toString()
+            text_result_simulate.text = Format.CURRENCY_REAL.format(it.grossAmount)
+            text_total_yield.text = Format.CURRENCY_REAL.format(it.grossAmountProfit)
+            text_total_applied_value.text = Format.CURRENCY_REAL.format(it.grossAmount)
+            text_yield_value.text = Format.CURRENCY_REAL.format(it.grossAmountProfit)
+            Format.CURRENCY_REAL.format(it.grossAmountProfit)
 
-            text_ir_applied.text = "R$ ${it.taxesAmount}(${it.taxesRate})"
+            text_ir_applied.text = getString(
+                R.string.text_label_taxes_amount,
+                Format.CURRENCY_REAL.format(it.taxesAmount),
+                Format.DECIMAL_PERCENT_PT_BR.format(it.taxesRate)
+            )
 
-            text_net_applied_value.text = it.netAmount.toString()
-            text_yield_annual.text = it.annualGrossRateProfit.toString()
-            text_yield_monthly.text = it.monthlyGrossRateProfit.toString()
-            text_yield_period.text = it.rateProfit.toString()
+            text_net_applied_value.text = Format.CURRENCY_REAL.format(
+                it.netAmount
+            )
+            text_yield_annual.text = Format.DECIMAL_PERCENT_PT_BR.format(
+                it.annualGrossRateProfit
+            )
 
+            text_yield_monthly.text =  Format.DECIMAL_PERCENT_PT_BR.format(
+                it.monthlyGrossRateProfit
+            )
+            text_yield_period.text =  Format.DECIMAL_PERCENT_PT_BR.format(
+                it.rateProfit
+            )
 
             it.investmentParameter.let { parameter ->
-                text_initially_applied_value.text = parameter?.investedAmount.toString()
-                text_redemption_date.text = parameter?.maturityDate.toString()
+                text_initially_applied_value.text = Format.CURRENCY_REAL.format(
+                    parameter?.investedAmount
+                )
+
+                text_redemption_date.text =  DateTimeFormat.DD_MM_YYYY.format(
+                    parameter?.maturityDate
+                )
                 text_running_days.text = parameter?.maturityTotalDays.toString()
-                text_rate_applied_cdi.text = parameter?.rate.toString()
+                text_rate_applied_cdi.text =  Format.NUMBER_PERCENT_PT_BR.format(
+                    parameter?.rate
+                )
             }
 
         }
