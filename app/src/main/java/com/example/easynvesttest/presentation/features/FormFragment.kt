@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.easynvesttest.R
+import com.example.easynvesttest.presentation.features.viewmodel.SimulatorCalculatorViewModel
 import kotlinx.android.synthetic.main.fragment_form.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class FormFragment : Fragment() {
+    private val viewModel: SimulatorCalculatorViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +31,15 @@ class FormFragment : Fragment() {
 
     private fun setupView() {
         button_simulate.setOnClickListener {
+            val investedAmount: String = text_value_application.text.toString()
+            val maturityDate = text_date_application.text.toString()
+            val rate = text_rate_application.text.toString()
+
+            viewModel.investedAmount = investedAmount.toDouble()
+            viewModel.maturityDate = maturityDate
+            viewModel.rate = rate.toDouble()
+
             it.findNavController().navigate(R.id.to_resultFragment)
         }
     }
-
-
 }

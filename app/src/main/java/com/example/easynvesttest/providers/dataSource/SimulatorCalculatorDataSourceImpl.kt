@@ -9,11 +9,6 @@ class SimulatorCalculatorDataSourceImpl(
     private val api: SimulatorCalcApi
 ) : SimulatorCalculatorDataSource {
     override suspend fun getInvestmentValues(
-//        investedAmount: Double,
-//        index: String,
-//        rate: Double,
-//        isTaxFree: Boolean,
-//        maturityDate: String
     investmentRequest: InvestmentRequest
     ): Response<InvestmentResponse> {
         return api.calculatorInvestment(

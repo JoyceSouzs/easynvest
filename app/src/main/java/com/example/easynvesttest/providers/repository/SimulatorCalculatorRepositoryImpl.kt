@@ -8,11 +8,6 @@ class SimulatorCalculatorRepositoryImpl(
     private val dataSource: SimulatorCalculatorDataSource
 ) : SimulatorCalculatorRepository {
     override suspend fun getInvestmentValues(
-//        investedAmount: Double,
-//        index: String,
-//        rate: Double,
-//        isTaxFree: Boolean,
-//        maturityDate: String
     investmentRequest: InvestmentRequest
     ): Investment {
         val response = dataSource.getInvestmentValues(investmentRequest)

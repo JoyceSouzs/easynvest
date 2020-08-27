@@ -12,11 +12,10 @@ import kotlinx.coroutines.launch
 class SimulatorCalculatorViewModel(
     private val repository: SimulatorCalculatorRepository
 ) : BaseViewModel() {
-    var investedAmount: Double = 32323.0
-    var index: String = "CDI"
-    var rate: Double = 123.0
-    var isTaxFree: Boolean = false
-    var maturityDate: String = "2023-03-03"
+
+    var investedAmount: Double = 0.0
+    var rate: Double = 0.0
+    var maturityDate: String = ""
 
     private val investment: MutableLiveData<Investment> = MutableLiveData()
 
@@ -29,7 +28,7 @@ class SimulatorCalculatorViewModel(
 
     private fun calculatorInvestment() {
         val investmentRequest = InvestmentRequest(
-            investedAmount, index, rate, isTaxFree, maturityDate
+           investedAmount = investedAmount, rate =  rate, maturityDate = maturityDate
         )
         viewModelScope.launch {
             try {

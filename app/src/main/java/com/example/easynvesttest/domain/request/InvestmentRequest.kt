@@ -4,6 +4,6 @@ class InvestmentRequest(
     val investedAmount: Double,
     val index: String = "CDI",
     val rate: Double,
-    val isTaxFree: Boolean,
+    val isTaxFree: Boolean = false,
     val maturityDate: String
 )

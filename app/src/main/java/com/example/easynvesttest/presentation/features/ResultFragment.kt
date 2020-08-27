@@ -16,6 +16,7 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        setupView()
     }
 
     override fun onCreateView(
@@ -26,9 +27,34 @@ class ResultFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_result, container, false)
     }
 
+    private fun setupView() {
+        button_simulate_again.setOnClickListener {
+            activity?.onBackPressed()
+        }
+    }
+
     private fun setupObservers() {
         viewModel.facilitatorInvestment().observeForever {
             text_result_simulate.text = it.grossAmount.toString()
+            text_total_yield.text = it.grossAmountProfit.toString()
+            text_total_applied_value.text = it.grossAmount.toString()
+            text_yield_value.text = it.grossAmountProfit.toString()
+
+            text_ir_applied.text = "R$ ${it.taxesAmount}(${it.taxesRate})"
+
+            text_net_applied_value.text = it.netAmount.toString()
+            text_yield_annual.text = it.annualGrossRateProfit.toString()
+            text_yield_monthly.text = it.monthlyGrossRateProfit.toString()
+            text_yield_period.text = it.rateProfit.toString()
+
+
+            it.investmentParameter.let { parameter ->
+                text_initially_applied_value.text = parameter?.investedAmount.toString()
+                text_redemption_date.text = parameter?.maturityDate.toString()
+                text_running_days.text = parameter?.maturityTotalDays.toString()
+                text_rate_applied_cdi.text = parameter?.rate.toString()
+            }
+
         }
     }
 }
