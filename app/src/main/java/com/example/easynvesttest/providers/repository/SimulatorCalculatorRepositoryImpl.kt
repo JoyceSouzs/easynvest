@@ -1,16 +1,16 @@
 package com.example.easynvesttest.providers.repository
 
-import com.example.easynvesttest.domain.request.InvestmentRequest
-import com.example.easynvesttest.presentation.model.Investment
+import com.example.easynvesttest.domain.request.ParametersRequest
+import com.example.easynvesttest.presentation.model.SimulatorCalculatorData
 import com.example.easynvesttest.providers.dataSource.SimulatorCalculatorDataSource
 
 class SimulatorCalculatorRepositoryImpl(
     private val dataSource: SimulatorCalculatorDataSource
 ) : SimulatorCalculatorRepository {
     override suspend fun getInvestmentValues(
-    investmentRequest: InvestmentRequest
-    ): Investment {
-        val response = dataSource.getInvestmentValues(investmentRequest)
+        parametersRequest: ParametersRequest
+    ): SimulatorCalculatorData {
+        val response = dataSource.getInvestmentValues(parametersRequest)
         return response.body()!!.toInvestment()
     }
 }

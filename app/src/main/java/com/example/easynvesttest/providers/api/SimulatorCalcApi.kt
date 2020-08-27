@@ -1,6 +1,6 @@
 package com.example.easynvesttest.providers.api
 
-import com.example.easynvesttest.domain.response.InvestmentResponse
+import com.example.easynvesttest.domain.response.SimulatorCalculatorResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +13,5 @@ interface SimulatorCalcApi {
         @Query("rate") rate: Double,
         @Query("isTaxFree") isTaxFree: Boolean,
         @Query("maturityDate") maturityDate: String
-    ): Response<InvestmentResponse>
+    ): Response<SimulatorCalculatorResponse>
 }

@@ -1,16 +1,11 @@
 package com.example.easynvesttest.providers.dataSource
 
-import com.example.easynvesttest.domain.request.InvestmentRequest
-import com.example.easynvesttest.domain.response.InvestmentResponse
+import com.example.easynvesttest.domain.request.ParametersRequest
+import com.example.easynvesttest.domain.response.SimulatorCalculatorResponse
 import retrofit2.Response
 
 interface SimulatorCalculatorDataSource {
     suspend fun getInvestmentValues(
-//        investedAmount: Double,
-//        index: String,
-//        rate: Double,
-//        isTaxFree: Boolean,
-//        maturityDate: String
-    investmentRequest: InvestmentRequest
-    ) : Response<InvestmentResponse>
+        parametersRequest: ParametersRequest
+    ) : Response<SimulatorCalculatorResponse>
 }

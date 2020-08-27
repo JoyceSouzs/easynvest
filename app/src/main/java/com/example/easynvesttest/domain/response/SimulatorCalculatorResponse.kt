@@ -1,11 +1,11 @@
 package com.example.easynvesttest.domain.response
 
-import com.example.easynvesttest.presentation.model.Investment
+import com.example.easynvesttest.presentation.model.SimulatorCalculatorData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class InvestmentResponse(
+class SimulatorCalculatorResponse(
     @Json(name = "investmentParameter") val investmentParameter: InvestmentParameterResponse? = null,
     @Json(name = "grossAmount") val grossAmount: Double? = null,
     @Json(name = "taxesAmount") val taxesAmount: Double? = null,
@@ -19,8 +19,8 @@ class InvestmentResponse(
     @Json(name = "rateProfit") val rateProfit: Double? = null,
     @Json(name = "annualNetRateProfit") val annualNetRateProfit: Double? = null
 ) {
-    fun toInvestment() : Investment {
-        return Investment(
+    fun toInvestment() : SimulatorCalculatorData {
+        return SimulatorCalculatorData(
             investmentParameter = investmentParameter!!.toInvestmentParameter(),
             grossAmount = grossAmount ?: 0.0,
             taxesAmount = taxesAmount ?: 0.0,

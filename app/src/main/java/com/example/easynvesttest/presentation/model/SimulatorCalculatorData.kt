@@ -3,7 +3,7 @@ package com.example.easynvesttest.presentation.model
 import org.threeten.bp.LocalDateTime
 
 
-class Investment(
+class SimulatorCalculatorData(
     val investmentParameter: InvestmentParameter? = null,
     val grossAmount: Double = 0.0,
     val taxesAmount: Double = 0.0,
