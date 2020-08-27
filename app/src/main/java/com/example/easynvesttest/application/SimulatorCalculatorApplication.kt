@@ -1,7 +1,7 @@
 package com.example.easynvesttest.application
 
 import android.app.Application
-import com.example.easynvesttest.providers.di.appModules
+import com.example.easynvesttest.providers.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -13,7 +13,14 @@ class SimulatorCalculatorApplication : Application() {
         startKoin {
             androidLogger(Level.NONE)
             androidContext(this@SimulatorCalculatorApplication)
-            modules(appModules)
+            modules(
+                listOf(
+                    androidModule,
+                    retrofitModule,
+                    repositoryModule,
+                    viewModelModule
+                )
+            )
         }
     }
 

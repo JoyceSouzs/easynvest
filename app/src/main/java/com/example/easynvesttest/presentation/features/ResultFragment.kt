@@ -23,7 +23,6 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_result, container, false)
     }
 
@@ -34,7 +33,7 @@ class ResultFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.facilitatorInvestment().observeForever {
+        viewModel.facilitatorInvestment().observe(viewLifecycleOwner) {
             text_result_simulate.text = it.grossAmount.toString()
             text_total_yield.text = it.grossAmountProfit.toString()
             text_total_applied_value.text = it.grossAmount.toString()
