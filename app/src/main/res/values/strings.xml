@@ -23,6 +23,7 @@
     <string name="label_rate_profit">Rentabilidade no período</string>
 
     <string name="label_simulate_again">Simular novamente</string>
+    <string name="invalid_date">Data inválida</string>
 
 
 </resources>

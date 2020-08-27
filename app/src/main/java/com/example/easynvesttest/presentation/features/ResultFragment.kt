@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.example.easynvesttest.R
 import com.example.easynvesttest.presentation.features.viewmodel.SimulatorCalculatorViewModel
 import kotlinx.android.synthetic.main.fragment_result.*
@@ -35,9 +34,10 @@ class ResultFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.loadingLiveData.observe(viewLifecycleOwner) {
             progress.isVisible = it
-        })
+        }
+
 
         viewModel.facilitatorInvestment().observe(viewLifecycleOwner) {
             text_result_simulate.text = it.grossAmount.toString()
