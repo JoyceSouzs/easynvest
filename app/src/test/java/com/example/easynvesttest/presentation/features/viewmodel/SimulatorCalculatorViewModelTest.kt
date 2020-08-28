@@ -5,6 +5,7 @@ import com.example.easynvesttest.data.TestSimulatorCalculatorData.simulator_data
 import com.example.easynvesttest.domain.request.ParametersRequest
 import com.example.easynvesttest.presentation.model.SimulatorCalculatorData
 import com.example.easynvesttest.providers.repository.SimulatorCalculatorRepository
+import org.junit.Assert.assertNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -16,7 +17,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.threeten.bp.LocalDateTime
 
 @ExperimentalCoroutinesApi
 class SimulatorCalculatorViewModelTest {
@@ -48,6 +48,7 @@ class SimulatorCalculatorViewModelTest {
         //then
         assertEquals(simulator_data, viewModel.simulatorCalculatorData.value)
         assertEquals(false, viewModel.loadingLiveData.value)
+        assertNotNull(viewModel.navigateToResultAction.value)
 
     }
 
@@ -64,8 +65,8 @@ class SimulatorCalculatorViewModelTest {
         //when
         viewModel.setParameters(parameters)
 
-        //then - Remover o private do view model para ter acesso
-//        assertEquals(parameters, viewModel.parameters)
+        //then
+        assertEquals(parameters, viewModel.parameters)
 
     }
 
@@ -76,5 +77,4 @@ class SimulatorCalculatorViewModelTest {
             return simulator_data
         }
     }
-
 }

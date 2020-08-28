@@ -1,5 +1,6 @@
 package com.example.easynvesttest.presentation.features.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,7 +27,8 @@ class SimulatorCalculatorViewModel(
     private val _loadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
     val loadingLiveData: LiveData<Boolean> = _loadingLiveData
 
-    private var parameters = ParametersRequest()
+    @VisibleForTesting
+    val parameters = ParametersRequest()
 
     fun setParameters(parametersRequest : ParametersRequest) {
         parameters.investedAmount = parametersRequest.investedAmount

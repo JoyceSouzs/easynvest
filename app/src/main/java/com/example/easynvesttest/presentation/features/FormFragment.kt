@@ -10,21 +10,32 @@ import androidx.navigation.fragment.findNavController
 import br.com.concrete.canarinho.watcher.MascaraNumericaTextWatcher
 import br.com.concrete.canarinho.watcher.ValorMonetarioWatcher
 import com.example.easynvesttest.R
+import com.example.easynvesttest.databinding.FragmentFormBinding
 import com.example.easynvesttest.domain.request.ParametersRequest
 import com.example.easynvesttest.extensions.filterDigits
+import com.example.easynvesttest.extensions.getDateOrNull
 import com.example.easynvesttest.presentation.features.viewmodel.SimulatorCalculatorViewModel
+import com.example.easynvesttest.util.DateTimeFormat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_form.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class FormFragment : Fragment() {
     private val viewModel: SimulatorCalculatorViewModel by sharedViewModel()
+
+    private var _binding: FragmentFormBinding? = null
+    private val binding get() = _binding!!
+
+//    private lateinit var investedAmount: String
+//    private var maturityDate: LocalDate? = null
+//    private lateinit var rate: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_form, container, false)
+        _binding = FragmentFormBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
@@ -35,7 +46,7 @@ class FormFragment : Fragment() {
     }
 
     private fun setupView() {
-       text_value_application.apply {
+        binding.investedAmount.apply {
             text?.clear()
             addTextChangedListener(
                 ValorMonetarioWatcher.Builder()
@@ -44,25 +55,31 @@ class FormFragment : Fragment() {
             )
         }
 
-        text_rate_application.apply {
+        binding.rate.apply {
             text?.clear()
             addTextChangedListener(ValorMonetarioWatcher())
         }
 
-        text_date_application.addTextChangedListener(
+        binding.maturityDate.addTextChangedListener(
             MascaraNumericaTextWatcher.Builder()
-            .paraMascara("##/##/####")
-            .build())
+                .paraMascara("##/##/####")
+                .build()
+        )
 
-        button_simulate.setOnClickListener {
-            val investedAmount = text_value_application.text.toString()
-            val maturityDate = text_date_application.text.toString()
-            val rate = text_rate_application.text.toString()
+        simulate.setOnClickListener {
+           val investedAmount = binding.investedAmount.text.toString()
+           val maturityDate = binding.maturityDate.text.toString().getDateOrNull()
+           val rate = binding.rate.text.toString()
+
+            if (maturityDate == null) {
+                showDialogError(getString(R.string.invalid_date))
+                return@setOnClickListener
+            }
 
             viewModel.setParameters(
                 ParametersRequest(
                     investedAmount = investedAmount.filterDigits(),
-                    maturityDate = maturityDate,
+                    maturityDate = maturityDate.format(DateTimeFormat.YYYY_MM_DD),
                     rate = rate.filterDigits(),
                 )
             )
@@ -79,18 +96,25 @@ class FormFragment : Fragment() {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            showDialogError()
+            showDialogError(getString(R.string.loading_error))
         }
 
         viewModel.loadingLiveData.observe(viewLifecycleOwner) {
-            progress.isVisible = it
+            binding.progress.isVisible = it
+            binding.simulate.isEnabled = !it
         }
+
     }
 
-    private fun showDialogError() {
-       MaterialAlertDialogBuilder(requireContext())
-           .setMessage(R.string.loading_error)
-           .setPositiveButton("Ok", null)
-           .show()
+    private fun showDialogError(message: String) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage(message)
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

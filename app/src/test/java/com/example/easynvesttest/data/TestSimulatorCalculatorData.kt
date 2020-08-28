@@ -30,6 +30,4 @@ object TestSimulatorCalculatorData {
         rateProfit = 9.5512,
         annualNetRateProfit = 74.17
     )
-
-
 }

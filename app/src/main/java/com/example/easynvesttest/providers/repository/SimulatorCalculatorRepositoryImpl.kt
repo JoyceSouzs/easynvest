@@ -3,6 +3,7 @@ package com.example.easynvesttest.providers.repository
 import com.example.easynvesttest.domain.request.ParametersRequest
 import com.example.easynvesttest.presentation.model.InvestmentParameter
 import com.example.easynvesttest.presentation.model.SimulatorCalculatorData
+import com.example.easynvesttest.providers.api.EasyApiException
 import com.example.easynvesttest.providers.dataSource.SimulatorCalculatorDataSource
 import org.threeten.bp.LocalDateTime
 
@@ -37,7 +38,14 @@ class SimulatorCalculatorRepositoryImpl(
         )
 
 //        val response = dataSource.getInvestmentValues(parametersRequest)
-//        return response.body()!!.toInvestment()
+//
+//        if (response.isSuccessful) {
+//            return response.body()!!.toInvestment()
+//        } else {
+//            throw EasyApiException(response.code())
+//        }
+
+
         return SIMULATION
     }
 }
