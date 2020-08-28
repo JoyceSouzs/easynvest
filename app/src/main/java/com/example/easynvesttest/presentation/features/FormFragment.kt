@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import br.com.concrete.canarinho.watcher.MascaraNumericaTextWatcher
 import br.com.concrete.canarinho.watcher.ValorMonetarioWatcher
 import com.example.easynvesttest.R
 import com.example.easynvesttest.domain.request.ParametersRequest
@@ -47,6 +48,10 @@ class FormFragment : Fragment() {
             addTextChangedListener(ValorMonetarioWatcher())
         }
 
+        text_date_application.addTextChangedListener(
+            MascaraNumericaTextWatcher.Builder()
+            .paraMascara("##/##/####")
+            .build())
 
         button_simulate.setOnClickListener {
             it.findNavController().navigate(R.id.to_resultFragment)

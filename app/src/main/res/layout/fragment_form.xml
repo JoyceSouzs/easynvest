@@ -28,6 +28,7 @@
         android:layout_marginHorizontal="16dp"
         android:gravity="center_horizontal"
         android:hint="@string/hint_value_application"
+        android:maxLength="15"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,13 +45,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_value_application" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/text_date_application"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
         android:gravity="center_horizontal"
         android:hint="@string/hint_date_application"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_date_application"/>
@@ -72,7 +74,9 @@
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
         android:gravity="center_horizontal"
+        android:inputType="number"
         android:hint="@string/hint_rate_application"
+        android:maxLength="6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_rate_application"/>
@@ -82,6 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/shape_button"
             android:text="@string/label_simulate"
             android:textColor="@color/colorText"
