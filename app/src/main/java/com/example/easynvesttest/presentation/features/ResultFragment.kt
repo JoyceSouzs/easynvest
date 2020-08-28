@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.easynvesttest.R
 import com.example.easynvesttest.presentation.features.viewmodel.SimulatorCalculatorViewModel
@@ -36,7 +35,6 @@ class ResultFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.calculatorInvestment()
         viewModel.simulatorCalculatorData.observe(viewLifecycleOwner) {
             text_result_simulate.text = Format.CURRENCY_REAL.format(it.grossAmount)
             text_total_yield.text = Format.CURRENCY_REAL.format(it.grossAmountProfit)

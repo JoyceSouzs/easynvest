@@ -20,6 +20,12 @@ class SimulatorCalculatorViewModel(
     private val _navigateToResultAction = MutableLiveData<Event<Unit>>()
     val navigateToResultAction: LiveData<Event<Unit>> = _navigateToResultAction
 
+    private val _errorLiveData = MutableLiveData<Event<Unit>>()
+    val errorLiveData: LiveData<Event<Unit>> = _errorLiveData
+
+    private val _loadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    val loadingLiveData: LiveData<Boolean> = _loadingLiveData
+
     private var parameters = ParametersRequest()
 
     fun setParameters(parametersRequest : ParametersRequest) {
@@ -31,12 +37,15 @@ class SimulatorCalculatorViewModel(
     fun calculatorInvestment() {
         viewModelScope.launch {
             try {
+                _loadingLiveData.postValue(true)
                 val response = repository.getInvestmentValues(parameters)
                 _simulatorCalculatorData.postValue(response)
                 _navigateToResultAction.postValue(Event(Unit))
             } catch (throwable: Throwable) {
                 throwable.printStackTrace()
+                _errorLiveData.postValue(Event(Unit))
             } finally {
+                _loadingLiveData.postValue(false)
             }
         }
     }
