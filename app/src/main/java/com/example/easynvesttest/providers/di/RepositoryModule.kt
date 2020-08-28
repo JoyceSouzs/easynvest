@@ -11,6 +11,4 @@ val repositoryModule = module {
 
     single<SimulatorCalculatorRepository> { SimulatorCalculatorRepositoryImpl(get()) }
 
-//    single { SimulatorCalculatorDataSourceImpl(get()) }
-//    single { SimulatorCalculatorRepositoryImpl(get()) }
 }

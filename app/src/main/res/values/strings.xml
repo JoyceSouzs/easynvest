@@ -23,7 +23,9 @@
     <string name="label_rate_profit">Rentabilidade no período</string>
 
     <string name="label_simulate_again">Simular novamente</string>
-    <string name="invalid_date">Data inválida</string>
+    <string name="invalid_invested_amount">Valor aplicado inválido</string>
+    <string name="invalid_rate_amount">Percentual do investimento inválido</string>
+    <string name="invalid_date">"Data de vencimento inválida</string>
     <string name="text_label_taxes_amount">%1$s(%2$s)</string>
     <string name="loading_error">A simulação não pôde ser carregada. Por favor, tente novamente mais tarde.</string>
 </resources>

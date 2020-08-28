@@ -3,9 +3,10 @@ package com.example.easynvesttest.extensions
 import com.example.easynvesttest.util.DateTimeFormat
 import org.threeten.bp.LocalDate
 
-fun String.filterDigits(): Double {
-    return replace("R$","").replace(".", "")
-        .replace(",", ".").toDouble()
+fun String.filterDouble(): Double {
+    val value = replace("R$","").replace(".", "")
+        .replace(",", ".")
+    return if (value.isEmpty()) 0.0 else value.toDouble()
 }
 
 fun String.getDateOrNull(): LocalDate? {
@@ -15,3 +16,4 @@ fun String.getDateOrNull(): LocalDate? {
         null
     }
 }
+

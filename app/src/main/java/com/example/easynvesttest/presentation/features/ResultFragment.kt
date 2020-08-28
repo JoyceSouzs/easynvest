@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.easynvesttest.R
-import com.example.easynvesttest.databinding.FragmentFormBinding
 import com.example.easynvesttest.databinding.FragmentResultBinding
 import com.example.easynvesttest.presentation.features.viewmodel.SimulatorCalculatorViewModel
 import com.example.easynvesttest.util.DateTimeFormat
 import com.example.easynvesttest.util.Format
-import kotlinx.android.synthetic.main.fragment_result.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ResultFragment : Fragment() {

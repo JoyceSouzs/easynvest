@@ -12,7 +12,7 @@ import br.com.concrete.canarinho.watcher.ValorMonetarioWatcher
 import com.example.easynvesttest.R
 import com.example.easynvesttest.databinding.FragmentFormBinding
 import com.example.easynvesttest.domain.request.ParametersRequest
-import com.example.easynvesttest.extensions.filterDigits
+import com.example.easynvesttest.extensions.filterDouble
 import com.example.easynvesttest.extensions.getDateOrNull
 import com.example.easynvesttest.presentation.features.viewmodel.SimulatorCalculatorViewModel
 import com.example.easynvesttest.util.DateTimeFormat
@@ -25,10 +25,6 @@ class FormFragment : Fragment() {
 
     private var _binding: FragmentFormBinding? = null
     private val binding get() = _binding!!
-
-//    private lateinit var investedAmount: String
-//    private var maturityDate: LocalDate? = null
-//    private lateinit var rate: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,9 +63,20 @@ class FormFragment : Fragment() {
         )
 
         simulate.setOnClickListener {
-           val investedAmount = binding.investedAmount.text.toString()
+           val investedAmount = binding.investedAmount.text.toString().filterDouble()
            val maturityDate = binding.maturityDate.text.toString().getDateOrNull()
-           val rate = binding.rate.text.toString()
+           val rate = binding.rate.text.toString().filterDouble()
+
+            when (0.0) {
+                investedAmount -> {
+                    showDialogError(getString(R.string.invalid_invested_amount))
+                    return@setOnClickListener
+                }
+                rate -> {
+                    showDialogError(getString(R.string.invalid_rate_amount))
+                    return@setOnClickListener
+                }
+            }
 
             if (maturityDate == null) {
                 showDialogError(getString(R.string.invalid_date))
@@ -78,9 +85,9 @@ class FormFragment : Fragment() {
 
             viewModel.setParameters(
                 ParametersRequest(
-                    investedAmount = investedAmount.filterDigits(),
+                    investedAmount = investedAmount,
                     maturityDate = maturityDate.format(DateTimeFormat.YYYY_MM_DD),
-                    rate = rate.filterDigits(),
+                    rate = rate,
                 )
             )
 

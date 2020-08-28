@@ -1,7 +1,10 @@
 package com.example.easynvesttest.application
 
 import android.app.Application
-import com.example.easynvesttest.providers.di.*
+import com.example.easynvesttest.providers.di.androidModule
+import com.example.easynvesttest.providers.di.repositoryModule
+import com.example.easynvesttest.providers.di.retrofitModule
+import com.example.easynvesttest.providers.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

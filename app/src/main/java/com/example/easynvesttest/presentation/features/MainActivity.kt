@@ -1,7 +1,7 @@
 package com.example.easynvesttest.presentation.features
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.easynvesttest.R
 
 class MainActivity : AppCompatActivity() {
