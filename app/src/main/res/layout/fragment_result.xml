@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/resultSimulate"
+            android:id="@+id/result_simulate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -24,7 +24,7 @@
 
 
         <TextView
-            android:id="@+id/grossAmount"
+            android:id="@+id/gross_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -32,11 +32,11 @@
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/resultSimulate"
+            app:layout_constraintTop_toBottomOf="@+id/result_simulate"
             tools:text="R$1.088,69" />
 
         <TextView
-            android:id="@+id/labelGrossAmountProfit"
+            android:id="@+id/label_gross_amount_profit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -44,18 +44,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.392"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/grossAmount" />
+            app:layout_constraintTop_toBottomOf="@+id/gross_amount" />
 
         <TextView
-            android:id="@+id/grossAmountProfit"
+            android:id="@+id/gross_amount_profit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintStart_toEndOf="@+id/labelGrossAmountProfit"
-            app:layout_constraintTop_toBottomOf="@+id/grossAmount"
+            app:layout_constraintStart_toEndOf="@+id/label_gross_amount_profit"
+            app:layout_constraintTop_toBottomOf="@+id/gross_amount"
             tools:text="R$88,69" />
 
         <TextView
@@ -67,17 +67,17 @@
             android:layout_marginTop="16dp"
             android:text="@string/label_initially_applied_value"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelGrossAmountProfit" />
+            app:layout_constraintTop_toBottomOf="@+id/label_gross_amount_profit" />
 
         <TextView
-            android:id="@+id/investedAmount"
+            android:id="@+id/invested_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelGrossAmountProfit"
+            app:layout_constraintTop_toBottomOf="@+id/gross_amount_profit"
             tools:text="R$1000,00" />
 
 
@@ -93,14 +93,14 @@
             app:layout_constraintTop_toBottomOf="@+id/label_initially_applied_value" />
 
         <TextView
-            android:id="@+id/grossAmountInvest"
+            android:id="@+id/gross_amount_invest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/investedAmount"
+            app:layout_constraintTop_toBottomOf="@+id/invested_amount"
             tools:text="R$1088,69" />
 
 
@@ -116,14 +116,14 @@
             app:layout_constraintTop_toBottomOf="@+id/label_total_applied_value" />
 
         <TextView
-            android:id="@+id/grossAmountProfitValue"
+            android:id="@+id/gross_amount_profit_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/grossAmountInvest"
+            app:layout_constraintTop_toBottomOf="@+id/gross_amount_invest"
             tools:text="R$1088,69" />
 
 
@@ -139,14 +139,14 @@
             app:layout_constraintTop_toBottomOf="@+id/label_yield_value" />
 
         <TextView
-            android:id="@+id/taxesAmount"
+            android:id="@+id/taxes_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/grossAmountProfitValue"
+            app:layout_constraintTop_toBottomOf="@+id/gross_amount_profit_value"
             tools:text="R$15,52(17,50%)" />
 
 
@@ -162,14 +162,14 @@
             app:layout_constraintTop_toBottomOf="@+id/label_ir_applied" />
 
         <TextView
-            android:id="@+id/netAmount"
+            android:id="@+id/net_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taxesAmount"
+            app:layout_constraintTop_toBottomOf="@+id/taxes_amount"
             tools:text="R$1073,17" />
 
 
@@ -185,7 +185,7 @@
             app:layout_constraintTop_toBottomOf="@+id/label_net_applied_value" />
 
         <TextView
-            android:id="@+id/maturityDate"
+            android:id="@+id/maturity_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="205dp"
@@ -194,7 +194,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/netAmount"
+            app:layout_constraintTop_toBottomOf="@+id/net_amount"
             tools:text="27/10/2018" />
 
 
@@ -210,14 +210,14 @@
             app:layout_constraintTop_toBottomOf="@+id/label_redemption_date" />
 
         <TextView
-            android:id="@+id/maturityTotalDays"
+            android:id="@+id/maturity_total_days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/maturityDate"
+            app:layout_constraintTop_toBottomOf="@+id/maturity_date"
             tools:text="365" />
 
 
@@ -233,14 +233,14 @@
             app:layout_constraintTop_toBottomOf="@+id/label_running_days" />
 
         <TextView
-            android:id="@+id/monthlyGrossRateProfit"
+            android:id="@+id/monthly_gross_rate_profit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/maturityTotalDays"
+            app:layout_constraintTop_toBottomOf="@+id/maturity_total_days"
             tools:text="0,57%" />
 
 
@@ -263,7 +263,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/monthlyGrossRateProfit"
+            app:layout_constraintTop_toBottomOf="@+id/monthly_gross_rate_profit"
             tools:text="123%" />
 
 
@@ -279,7 +279,7 @@
             app:layout_constraintTop_toBottomOf="@+id/label_rate_applied_cdi" />
 
         <TextView
-            android:id="@+id/annualGrossRateProfit"
+            android:id="@+id/annual_gross_rate_profit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -302,18 +302,18 @@
             app:layout_constraintTop_toBottomOf="@+id/label_yield_annual" />
 
         <TextView
-            android:id="@+id/rateProfit"
+            android:id="@+id/rate_profit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/annualGrossRateProfit"
+            app:layout_constraintTop_toBottomOf="@+id/annual_gross_rate_profit"
             tools:text="8,87%" />
 
         <Button
-            android:id="@+id/simulateAgain"
+            android:id="@+id/simulate_again"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
