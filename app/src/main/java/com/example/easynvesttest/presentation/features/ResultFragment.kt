@@ -36,11 +36,8 @@ class ResultFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.loadingLiveData.observe(viewLifecycleOwner) {
-            progress.isVisible = it
-        }
-
-        viewModel.facilitatorInvestment().observe(viewLifecycleOwner) {
+        viewModel.calculatorInvestment()
+        viewModel.simulatorCalculatorData.observe(viewLifecycleOwner) {
             text_result_simulate.text = Format.CURRENCY_REAL.format(it.grossAmount)
             text_total_yield.text = Format.CURRENCY_REAL.format(it.grossAmountProfit)
             text_total_applied_value.text = Format.CURRENCY_REAL.format(it.grossAmount)

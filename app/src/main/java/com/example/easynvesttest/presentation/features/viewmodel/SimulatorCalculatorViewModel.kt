@@ -2,26 +2,25 @@ package com.example.easynvesttest.presentation.features.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.easynvesttest.domain.request.ParametersRequest
-import com.example.easynvesttest.presentation.BaseViewModel
 import com.example.easynvesttest.presentation.model.SimulatorCalculatorData
 import com.example.easynvesttest.providers.repository.SimulatorCalculatorRepository
+import com.example.easynvesttest.util.Event
 import kotlinx.coroutines.launch
 
 class SimulatorCalculatorViewModel(
     private val repository: SimulatorCalculatorRepository
-) : BaseViewModel() {
+) : ViewModel() {
 
-    private val simulatorCalculatorData: MutableLiveData<SimulatorCalculatorData> = MutableLiveData()
+    private val _simulatorCalculatorData: MutableLiveData<SimulatorCalculatorData> = MutableLiveData()
+    val simulatorCalculatorData: LiveData<SimulatorCalculatorData> = _simulatorCalculatorData
+
+    private val _navigateToResultAction = MutableLiveData<Event<Unit>>()
+    val navigateToResultAction: LiveData<Event<Unit>> = _navigateToResultAction
+
     private var parameters = ParametersRequest()
-
-    fun facilitatorInvestment(): LiveData<SimulatorCalculatorData> {
-        if (simulatorCalculatorData.value == null) {
-            calculatorInvestment()
-        }
-        return simulatorCalculatorData
-    }
 
     fun setParameters(parametersRequest : ParametersRequest) {
         parameters.investedAmount = parametersRequest.investedAmount
@@ -29,16 +28,15 @@ class SimulatorCalculatorViewModel(
         parameters.maturityDate = parametersRequest.maturityDate
     }
 
-    private fun calculatorInvestment() {
+    fun calculatorInvestment() {
         viewModelScope.launch {
             try {
-                loadingLiveData.postValue(true)
                 val response = repository.getInvestmentValues(parameters)
-                simulatorCalculatorData.postValue(response)
+                _simulatorCalculatorData.postValue(response)
+                _navigateToResultAction.postValue(Event(Unit))
             } catch (throwable: Throwable) {
                 throwable.printStackTrace()
             } finally {
-                loadingLiveData.postValue(false)
             }
         }
     }

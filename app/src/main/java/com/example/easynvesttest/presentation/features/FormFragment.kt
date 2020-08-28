@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import br.com.concrete.canarinho.watcher.MascaraNumericaTextWatcher
 import br.com.concrete.canarinho.watcher.ValorMonetarioWatcher
 import com.example.easynvesttest.R
 import com.example.easynvesttest.domain.request.ParametersRequest
 import com.example.easynvesttest.extensions.filterDigits
 import com.example.easynvesttest.presentation.features.viewmodel.SimulatorCalculatorViewModel
-import com.example.easynvesttest.util.DateTimeFormat
 import kotlinx.android.synthetic.main.fragment_form.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -31,6 +32,7 @@ class FormFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
+        setupObservers()
     }
 
     private fun setupView() {
@@ -67,6 +69,14 @@ class FormFragment : Fragment() {
                     rate = rate.filterDigits(),
                 )
             )
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.navigateToResultAction.observe(viewLifecycleOwner) {
+            if (!it.hasBeenHandled) {
+                findNavController().navigate(R.id.to_resultFragment)
+            }
         }
     }
 }
