@@ -9,6 +9,7 @@ import com.example.easynvesttest.domain.request.ParametersRequest
 import com.example.easynvesttest.presentation.model.SimulatorCalculatorData
 import com.example.easynvesttest.providers.repository.SimulatorCalculatorRepository
 import com.example.easynvesttest.util.Event
+import com.example.easynvesttest.util.SimulatorCalculatorResult
 import kotlinx.coroutines.launch
 
 class SimulatorCalculatorViewModel(
@@ -36,18 +37,20 @@ class SimulatorCalculatorViewModel(
         parameters.maturityDate = parametersRequest.maturityDate
     }
 
+
     fun calculatorInvestment() {
         viewModelScope.launch {
-            try {
-                _loadingLiveData.postValue(true)
-                val response = repository.getInvestmentValues(parameters)
-                _simulatorCalculatorData.postValue(response)
-                _navigateToResultAction.postValue(Event(Unit))
-            } catch (throwable: Throwable) {
-                throwable.printStackTrace()
-                _errorLiveData.postValue(Event(Unit))
-            } finally {
-                _loadingLiveData.postValue(false)
+            _loadingLiveData.postValue(true)
+            when (val response = repository.getInvestmentValues(parameters)) {
+                is SimulatorCalculatorResult.Success -> {
+                    _simulatorCalculatorData.postValue(response.simulation)
+                    _navigateToResultAction.postValue(Event(Unit))
+                    _loadingLiveData.postValue(false)
+                }
+                is SimulatorCalculatorResult.ApiError -> {
+                    _errorLiveData.postValue(Event(Unit))
+                    _loadingLiveData.postValue(false)
+                }
             }
         }
     }

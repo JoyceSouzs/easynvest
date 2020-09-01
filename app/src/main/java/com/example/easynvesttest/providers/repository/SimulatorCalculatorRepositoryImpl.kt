@@ -3,8 +3,8 @@ package com.example.easynvesttest.providers.repository
 import com.example.easynvesttest.domain.request.ParametersRequest
 import com.example.easynvesttest.presentation.model.InvestmentParameter
 import com.example.easynvesttest.presentation.model.SimulatorCalculatorData
-import com.example.easynvesttest.providers.api.SimulatorCalcApiException
 import com.example.easynvesttest.providers.dataSource.SimulatorCalculatorDataSource
+import com.example.easynvesttest.util.SimulatorCalculatorResult
 import org.threeten.bp.LocalDateTime
 
 class SimulatorCalculatorRepositoryImpl(
@@ -12,16 +12,23 @@ class SimulatorCalculatorRepositoryImpl(
 ) : SimulatorCalculatorRepository {
     override suspend fun getInvestmentValues(
         parametersRequest: ParametersRequest
-    ): SimulatorCalculatorData {
+    ): SimulatorCalculatorResult<SimulatorCalculatorData> {
 
-//        val response = dataSource.getInvestmentValues(parametersRequest)
-//        if (response.isSuccessful) {
-//            return response.body()!!.toInvestment()
-//        } else {
-//            throw SimulatorCalcApiException(response.code())
+//        return try {
+//            val response = dataSource.getInvestmentValues(parametersRequest)
+//            if (response.isSuccessful) {
+//                val data = response.body()!!.toInvestment()
+//                SimulatorCalculatorResult.Success(data)
+//            } else {
+//                SimulatorCalculatorResult.ApiError(response.code(), response.message())
+//            }
+//        } catch (throwable: Throwable) {
+//            SimulatorCalculatorResult.ApiError(0, throwable.message.toString())
 //        }
 
-        val SIMULATION = SimulatorCalculatorData(
+
+
+        val simulation = SimulatorCalculatorData(
             investmentParameter = InvestmentParameter(
                 investedAmount = 32323.0,
                 yearlyInterestRate = 9.5512,
@@ -43,6 +50,6 @@ class SimulatorCalculatorRepositoryImpl(
             rateProfit = 9.5512,
             annualNetRateProfit = 74.17
         )
-        return SIMULATION
+        return SimulatorCalculatorResult.Success(simulation)
     }
 }

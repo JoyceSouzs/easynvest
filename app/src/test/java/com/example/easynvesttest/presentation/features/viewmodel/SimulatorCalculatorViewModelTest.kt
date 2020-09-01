@@ -5,6 +5,7 @@ import com.example.easynvesttest.data.TestSimulatorCalculatorData.simulator_data
 import com.example.easynvesttest.domain.request.ParametersRequest
 import com.example.easynvesttest.presentation.model.SimulatorCalculatorData
 import com.example.easynvesttest.providers.repository.SimulatorCalculatorRepository
+import com.example.easynvesttest.util.SimulatorCalculatorResult
 import org.junit.Assert.assertNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -37,11 +38,13 @@ class SimulatorCalculatorViewModelTest {
         testDispatcher.cleanupTestCoroutines()
     }
 
-    private val viewModel = SimulatorCalculatorViewModel(FakeSimulatorCalculatorRepository())
+    val viewModel = SimulatorCalculatorViewModel(FakeSimulatorCalculatorRepository(
+        SimulatorCalculatorResult.Success(simulator_data)))
 
     @Test
-    fun `when view model calculatorInvestment try sets _simulatorCalculatorData`()
+    fun `when view model calculatorInvestment get success then sets _simulatorCalculatorData`()
             = testDispatcher.runBlockingTest {
+
         //when
         viewModel.calculatorInvestment()
 
@@ -70,11 +73,13 @@ class SimulatorCalculatorViewModelTest {
 
     }
 
-    internal class FakeSimulatorCalculatorRepository : SimulatorCalculatorRepository {
+    internal class FakeSimulatorCalculatorRepository(
+        private val result: SimulatorCalculatorResult<SimulatorCalculatorData>
+    ) : SimulatorCalculatorRepository {
 
         override suspend fun getInvestmentValues(parametersRequest: ParametersRequest)
-                : SimulatorCalculatorData {
-            return simulator_data
+                : SimulatorCalculatorResult<SimulatorCalculatorData> {
+            return result
         }
     }
 }
