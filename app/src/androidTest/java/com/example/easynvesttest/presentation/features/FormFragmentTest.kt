@@ -22,13 +22,13 @@ class FormFragmentTest {
     @Test
     fun shouldShowProgressBar() {
         onView(withId(R.id.invested_amount))
-            .perform(typeText("32323.0"))
+            .perform(scrollTo(), typeText("32323.0"))
 
         onView(withId(R.id.maturity_date))
-            .perform(typeText("03-03-2023"))
+            .perform(scrollTo(), typeText("03-03-2023"))
 
         onView(withId(R.id.rate))
-            .perform(typeText("123.00"), closeSoftKeyboard())
+            .perform(scrollTo(), typeText("123.00"))
 
         onView(withId(R.id.simulate))
             .perform(scrollTo(), click())
